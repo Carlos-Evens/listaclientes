@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "clientes")
 //Plantilla de tabla clientes
@@ -28,6 +30,7 @@ public class Cliente implements Serializable {
 	private String email;
 	@Temporal(TemporalType.DATE)
 	@Column(name = "create_at")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date createAt;
 
 	private static final long serialVersionUID = 1L;
