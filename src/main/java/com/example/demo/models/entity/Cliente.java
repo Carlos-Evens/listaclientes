@@ -12,6 +12,10 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -25,20 +29,22 @@ public class Cliente implements Serializable {
 	private Long id;
 //Creacion de campos de tabla clientes
 
+	@Size(min=4,max=12)
+	@NotEmpty
 	private String nombre;
+	@NotEmpty
 	private String apellido;
+	@NotEmpty
+	@Email
 	private String email;
 	@Temporal(TemporalType.DATE)
 	@Column(name = "create_at")
 	@DateTimeFormat(pattern="yyyy-MM-dd")
+@NotNull
 	private Date createAt;
 
 	private static final long serialVersionUID = 1L;
 
-	@PrePersist
-	public void prePersist() {
-		createAt = new Date();
-	}
 
 	public Long getId() {
 		return id;
